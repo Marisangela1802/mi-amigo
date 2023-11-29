@@ -17,14 +17,14 @@ const estiloConversas = StyleSheet.create({
     imagem:{
         width: 50,
         height: 50,
-        borderRadius: "50%",
+        // borderRadius: "50%",
         backgroundColor: "gray",
         marginRight: 22
     },
     numero:{
         width: 30,
         height: 30,
-        borderRadius: "50%",
+        // borderRadius: "50%",
         backgroundColor: "#E06C2D",
     }
 })

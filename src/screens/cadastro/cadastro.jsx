@@ -12,7 +12,7 @@ import { Picker } from "@react-native-picker/picker";
 //     width: 200
 // } 
 
-const Cadastro = () => {
+const Cadastro = ({navigation}) => {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
 
@@ -48,7 +48,7 @@ const Cadastro = () => {
                     <option value="valor2">Valor 2</option>
                 </select> */}
             </View>
-            <Pressable style={estilos.botao}>
+            <Pressable style={estilos.botao} onPress={()=>navigation.navigate("Login")}>
                 <Text style={estilos.textoBotao}>Criar Conta</Text>
             </Pressable>
         </View>

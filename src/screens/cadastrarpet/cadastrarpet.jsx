@@ -2,13 +2,13 @@ import { View, Text, TextInput, Pressable, ScrollView } from "react-native"
 import { useState } from "react"
 
 import { Picker } from "@react-native-picker/picker";
-import { Icon } from "react-native-paper";
+import { Icon, IconButton } from "react-native-paper";
 
 import estilos from "../css_geral"
 import estiloCadastrarPet from "./cadastrarpet_css"
 
 
-const CadastrarPet = () => {
+const CadastrarPet = ({navigation}) => {
     const [nome, setNome] = useState("")
     const [raca, setRaca] = useState("")
     const [descricao, setDescricao] = useState("")
@@ -65,6 +65,15 @@ const CadastrarPet = () => {
     return (
         <ScrollView>
             <View style={estiloCadastrarPet.tela}>
+            <View style={{width:"100%", flexDirection: "row", alignItems: "center"}}>
+                <IconButton
+                    icon="arrow-left"
+                    iconColor="#E06C2D"
+                    size={29}
+                    onPress={() => navigation.navigate("Mi Amigo")}
+                />
+                <Text style={[estilos.titulo, {color: "#E06C2D"}]}>Cadastrar Pet</Text>
+            </View>
                 <View style={estiloCadastrarPet.containerImagem}></View>
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Nome</Text>

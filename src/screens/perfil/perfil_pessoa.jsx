@@ -18,13 +18,13 @@ const PerfilPessoa = () => {
         <ScrollView>
             <View style={estiloperfil.pagina}>
                 <View style={estilos.containerTexto}>
-                    <Text style={estilos.titulo}>Dados da Organização</Text>
+                    <Text style={estilos.titulo}>Dados Pessoais</Text>
                 </View>
                 <View>
                     <View>
                         <TextInput
                             style={estilos.input}
-                            placeholder="Nome da ONG"
+                            placeholder="Nome"
                             defaultValue={nome}
                             onChangeText={(textodigitado) => setNome(textodigitado)}
                         />

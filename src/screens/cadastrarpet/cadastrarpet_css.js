@@ -4,7 +4,8 @@ const estiloCadastrarPet = StyleSheet.create({
     tela: {
         flex: 1,
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 20
     },
     containerImagem: {
         width: "100%",

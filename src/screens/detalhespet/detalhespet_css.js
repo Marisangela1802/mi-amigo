@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 const estiloDetalhesPet = StyleSheet.create({
     tela:{
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 20
     },
     texto:{
         marginBottom: 8

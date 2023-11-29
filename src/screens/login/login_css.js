@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const estiloLogin = StyleSheet.create({
     paginaLogin: {
-        flex: 1, 
+        flex: 1,
         justifyContent: "center", 
         alignItems: "center"
     },

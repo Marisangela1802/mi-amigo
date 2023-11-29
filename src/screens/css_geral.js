@@ -111,6 +111,33 @@ const estilos = StyleSheet.create({
         paddingLeft: 24,
         flexDirection: "row",
         justifyContent: "space-between"
+    },
+    navbar:{
+        width: "100%",
+        height: 64,
+        backgroundColor: "#E06C2D",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: 16
+    },
+    menusAbaixo: {
+        width: "100%",
+        height: 85,
+        backgroundColor: "#E06C2D",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingBottom: 28,
+        paddingTop: 28,
+        position: "fixed",
+        bottom: 0
+    },
+    containerVoltar:{
+        flex: 1,
+        flexDirection: "row",
+        padding: 5
     }
 })
 

@@ -1,12 +1,15 @@
-// import Main from './src/screens/rotas';
-import DetalhesPet from "./src/screens/detalhespet/detalhespet"
+import "react-native-gesture-handler"
 import { PaperProvider } from "react-native-paper"
+import { NavigationContainer } from "@react-navigation/native";
+import LoginRoutes from './src/screens/login.routes';
 
 export default function App() {
   return (
-      // <Main/>
-      <PaperProvider>
-        <DetalhesPet/>
-      </PaperProvider>
+    // <Main/>
+    <PaperProvider>
+      <NavigationContainer>
+        <LoginRoutes/>
+      </NavigationContainer>
+    </PaperProvider>
   )
 }
