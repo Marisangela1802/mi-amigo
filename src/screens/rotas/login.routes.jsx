@@ -8,18 +8,21 @@ import DrawerRoutes from "./drawe.routes";
 import SobreNos from "../sobrenos/sobre_nos";
 import DetalhesPet from "../detalhespet/detalhespet"
 import CadastrarPet from "../cadastrarpet/cadastrarpet";
+import DetalhesMeuPet from "../detalhespet/detalhesMeuPet";
 
 const LoginRoutes = () => {
-    return(
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name="entrar" component={PaginaInicial} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Cadastre-se" component={Cadastro} />
-                <Stack.Screen name="App" component={DrawerRoutes}/>
-                <Stack.Screen name="Sobre Nós" component={SobreNos}/>
-                <Stack.Screen name="Detalhes" component={DetalhesPet}/>
-                <Stack.Screen name="Cadastrar Pet" component={CadastrarPet}/>
-           
+    
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="entrar" component={PaginaInicial} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Cadastre-se" component={Cadastro} />
+            <Stack.Screen name="App" component={DrawerRoutes} />
+            <Stack.Screen name="Sobre Nós" component={SobreNos} />
+            <Stack.Screen name="Detalhes" component={DetalhesPet} />
+            <Stack.Screen name="Cadastrar Pet" component={CadastrarPet} />
+            <Stack.Screen name="Detalhes Meu Pet" component={DetalhesMeuPet} />
+
         </Stack.Navigator>
     )
 }

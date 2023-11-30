@@ -6,6 +6,9 @@ import { Picker } from "@react-native-picker/picker";
 
 import estilos from "../css_geral";
 import estiloperfil from "./perfil_css";
+import UsuarioService from "../../crud/service/usuario_service";
+
+
 
 const PerfilPessoa = () => {
     const [nome, setNome] = useState("")
@@ -163,6 +166,7 @@ const PerfilPessoa = () => {
                 <Pressable style={estilos.botao}>
                     <Text style={estilos.textoBotao}>Salvar</Text>
                 </Pressable>
+
             </View>
         </ScrollView>
     )

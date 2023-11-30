@@ -6,51 +6,68 @@ import estilos from "../css_geral";
 import estiloCadastro from "./cadastro_css";
 import logo from "./../../../assets/logo.png"
 import { Picker } from "@react-native-picker/picker";
+import { IconButton } from "react-native-paper";
 
-// const imagem = {
-//     uri: logo,
-//     width: 200
-// } 
+import UsuarioService from "../../crud/service/usuario_service";
+import { auth } from "../../crud/firebase/firebase_config";
 
-const Cadastro = ({navigation}) => {
+const Cadastro = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
 
-    return (
-        <View style={estiloCadastro.telaCadastro}>
-            <Image
-                source={logo}
-                style={{marginBottom: 40}}
+    const acaoBotao = () => {
+        UsuarioService.signUp(
+            auth,
+            email,
+            senha,
+            (userCredential) => {
+                console.log(userCredential)
+            }
+        )
+        navigation.navigate("Login")
+    }
 
+    return (
+        <View style={{height: 800, marginTop:  10}}>
+            <IconButton
+                icon="arrow-left"
+                iconColor="#E06C2D"
+                size={29}
+                onPress={() => navigation.navigate("entrar")}
             />
-            <View style={estilos.containerInputs}>
-                <TextInput
-                    style={estilos.input}
-                    placeholder="E-mail"
-                    defaultValue={email}
-                    onChangeText={(textodigitado) => setEmail(textodigitado)}
+            <View style={estiloCadastro.telaCadastro}>
+                <Image
+                    source={logo}
+                    style={{ marginBottom: 40 }}
+
                 />
-                <TextInput
-                    style={estilos.input}
-                    placeholder="Senha"
-                    defaultValue={senha}
-                    onChangeText={(textodigitado) => setSenha(textodigitado)}
-                />
-                <Picker 
-                    style={estilos.select}
+                <View style={estilos.containerInputs}>
+                    <TextInput
+                        style={estilos.input}
+                        placeholder="E-mail"
+                        onChangeText={(email) => setEmail(email)}
+                        value={email}
+                    />
+                    <TextInput
+                        style={estilos.input}
+                        placeholder="Senha"
+                        secureTextEntry={true}
+                        onChangeText={(password) => setSenha(password)}
+                        value={senha}
+                    />
+                    <Picker
+                        style={estilos.select}
                     // placeholder={{label:"Selecione uma opção"}}
-                >
-                    <Picker.Item label="ONG" value="ong"/>
-                    <Picker.Item label="Protetor" value="protetor"/>
-                </Picker>
-                {/* <select name="selecione um" style={estilos.select}>
-                    <option value="valor1">Valor 1</option>
-                    <option value="valor2">Valor 2</option>
-                </select> */}
+                    >
+                        <Picker.Item label="ONG" value="ong" />
+                        <Picker.Item label="Protetor" value="protetor" />
+                    </Picker>
+
+                </View>
+                <Pressable style={estilos.botao} onPress={acaoBotao}>
+                    <Text style={estilos.textoBotao}>Criar Conta</Text>
+                </Pressable>
             </View>
-            <Pressable style={estilos.botao} onPress={()=>navigation.navigate("Login")}>
-                <Text style={estilos.textoBotao}>Criar Conta</Text>
-            </Pressable>
         </View>
     )
 }

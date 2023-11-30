@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, ScrollView } from "react-native"
+import { View, Text, TextInput, Pressable, ScrollView, Image } from "react-native"
 import { useState } from "react"
 
 import { Picker } from "@react-native-picker/picker";
@@ -7,58 +7,59 @@ import { Icon, IconButton } from "react-native-paper";
 import estilos from "../css_geral"
 import estiloCadastrarPet from "./cadastrarpet_css"
 
+import { firestoreDb } from "../../crud/firebase/firebase_config";
+import PetService from "../../crud/service/pet_service";
 
 const CadastrarPet = ({navigation}) => {
     const [nome, setNome] = useState("")
     const [raca, setRaca] = useState("")
     const [descricao, setDescricao] = useState("")
-    const [togle1, setTogle1] = useState("toggle-switch-off-outline")
-    const [togle2, setTogle2] = useState("toggle-switch-off-outline")
-    const [togle3, setTogle3] = useState("toggle-switch-off-outline")
-    const [togle4, setTogle4] = useState("toggle-switch-off-outline")
-    const [isPressedCachorro, setIsPressedCachorro] = useState(true)
-    const [isPressedGato, setIsPressedGato] = useState(false)
-    const [isPressedFemea, setIsPressedFemea] = useState(true)
-    const [isPressedMacho, setIsPressedMacho] = useState(false)
+    const [castrado, setCastrado] = useState("toggle-switch-off-outline")
+    const [vacinado, setVacinado] = useState("toggle-switch-off-outline")
+    const [vermifugado, setVermifugado] = useState("toggle-switch-off-outline")
+    const [cuidados, setCuidados] = useState("toggle-switch-off-outline")
+    const [especie, setEspecie] = useState("")
+    const [sexo, setSexo] = useState("")
+    const [porte, setPorte] = useState("")
+    const [idade, setIdade] = useState("")
+    const [uri, setUri] = useState("")
 
-    const handlePressCachorro = () => {
-        setIsPressedCachorro(!isPressedCachorro)
-    }
-    const handlePressGato = () => {
-        setIsPressedGato(!isPressedGato)
-    }
-    const handlePressFemea = () => {
-        setIsPressedFemea(!isPressedFemea)
-    }
-    const handlePressMacho = () => {
-        setIsPressedMacho(!isPressedMacho)
-    }
+
     
-    
+    const cadastrarPet = () => {
+        PetService.criar(
+            firestoreDb,
+            (id)=>{
+                console.log(id)
+            },
+            {uri, nome, especie, raca, sexo, idade, castrado, vacinado, vermifugado, cuidados, porte, descricao},
+            navigation.navigate("Mi Amigo")
+        )
+    }
    
 
     const botaoPressed1 = () => {
-        setTogle1("toggle-switch-outline")
-        if(togle1==="toggle-switch-outline"){
-            setTogle1("toggle-switch-off-outline")
+        setCastrado("toggle-switch-outline")
+        if(castrado==="toggle-switch-outline"){
+            setCastrado("toggle-switch-off-outline")
         }
     }
     const botaoPressed2 = () => {
-        setTogle2("toggle-switch-outline")
-        if(togle2==="toggle-switch-outline"){
-            setTogle2("toggle-switch-off-outline")
+        setVacinado("toggle-switch-outline")
+        if(vacinado==="toggle-switch-outline"){
+            setVacinado("toggle-switch-off-outline")
         }
     }
     const botaoPressed3 = () => {
-        setTogle3("toggle-switch-outline")
-        if(togle3==="toggle-switch-outline"){
-            setTogle3("toggle-switch-off-outline")
+        setVermifugado("toggle-switch-outline")
+        if(vermifugado==="toggle-switch-outline"){
+            setVermifugado("toggle-switch-off-outline")
         }
     }
     const botaoPressed4 = () => {
-        setTogle4("toggle-switch-outline")
-        if(togle4==="toggle-switch-outline"){
-            setTogle4("toggle-switch-off-outline")
+        setCuidados("toggle-switch-outline")
+        if(cuidados==="toggle-switch-outline"){
+            setCuidados("toggle-switch-off-outline")
         }
     }
 
@@ -74,64 +75,72 @@ const CadastrarPet = ({navigation}) => {
                 />
                 <Text style={[estilos.titulo, {color: "#E06C2D"}]}>Cadastrar Pet</Text>
             </View>
-                <View style={estiloCadastrarPet.containerImagem}></View>
+                <View style={estiloCadastrarPet.containerImagem}>
+                    
+                </View>
+                <View style={estiloCadastrarPet.containerTexto}>
+                    <Text style={estilos.titulo}>Link da Imagem</Text>
+                </View>
+                <TextInput
+                    style={[estilos.input, estiloCadastrarPet.inputs]}
+                    placeholder="Link da Imagem"
+                    value={uri}
+                    onChangeText={(textodigitado) => setUri(textodigitado)}
+                />
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Nome</Text>
                 </View>
                 <TextInput
                     style={[estilos.input, estiloCadastrarPet.inputs]}
                     placeholder="Nome"
-                    defaultValue={nome}
+                    value={nome}
                     onChangeText={(textodigitado) => setNome(textodigitado)}
                 />
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Espécie</Text>
                 </View>
-                <View style={estiloCadastrarPet.componentBotoesinhos}>
-                    <Pressable style={[estilos.botaoMenor, estiloCadastrarPet.botaoMenor, { marginRight: 14, marginBottom: 0, backgroundColor: isPressedCachorro ? '#E06C2D' : '#E7E7E7' }]} onPress={handlePressCachorro}>
-                        <Text style={[estilos.textoAlternativoBotao, {color: isPressedCachorro ? "#E7E7E7" : "#E06C2D" }]}>Cachorro</Text>
-                    </Pressable>
-                    <Pressable style={[estilos.botaoMenor, estiloCadastrarPet.botaoMenor, {backgroundColor: isPressedGato ? '#E06C2D' : '#E7E7E7' }]} onPress={handlePressGato}>
-                        <Text style={[estilos.textoAlternativoBotao, {color: isPressedGato ? "#E7E7E7" : "#E06C2D" }]}>Gato</Text>
-                    </Pressable>
-                </View>
+                <TextInput
+                    style={[estilos.input, estiloCadastrarPet.inputs]}
+                    placeholder="Especie"
+                    value={especie}
+                    onChangeText={(textodigitado) => setEspecie(textodigitado)}
+                />
+
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Raça</Text>
                 </View>
                 <TextInput
                     style={[estilos.input, estiloCadastrarPet.inputs]}
-                    placeholder="Raca"
-                    defaultValue={raca}
+                    placeholder="Cachorro ou Gato"
+                    value={raca}
                     onChangeText={(textodigitado) => setRaca(textodigitado)}
                 />
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Sexo</Text>
                 </View>
-                <View style={estiloCadastrarPet.componentBotoesinhos}>
-                    <Pressable style={[estilos.botaoMenor, estiloCadastrarPet.botaoMenor, { marginRight: 14, marginBottom: 0, backgroundColor: isPressedFemea ? '#E06C2D' : '#E7E7E7' }]} onPress={handlePressFemea}>
-                        <Text style={[estilos.textoAlternativoBotao, {color: isPressedFemea ? "#E7E7E7" : "#E06C2D"}]}>Fêmea</Text>
-                    </Pressable>
-                    <Pressable style={[estilos.botaoMenor, estiloCadastrarPet.botaoMenor, {backgroundColor: isPressedMacho ? '#E06C2D' : '#E7E7E7'}]} onPress={handlePressMacho}>
-                        <Text style={[estilos.textoAlternativoBotao, {color: isPressedMacho ? "#E7E7E7" : "#E06C2D"}]}>Macho</Text>
-                    </Pressable>
-                </View>
+
+                <TextInput
+                    style={[estilos.input, estiloCadastrarPet.inputs]}
+                    placeholder="Sexo"
+                    value={sexo}
+                    onChangeText={(textodigitado) => setSexo(textodigitado)}
+                />
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Idade Estimada</Text>
                 </View>
-                <Picker
-                    style={[estilos.select, { width: 382, marginBottom: 30 }]}
-                // placeholder={{label:"Selecione uma opção"}}
-                >
-                    <Picker.Item label="1 ano" value="um ano" />
-                    <Picker.Item label="2 anos" value="dois anos" />
-                    <Picker.Item label="3 anos" value="tres anos" />
-                </Picker>
+    
+                <TextInput
+                    style={[estilos.input, estiloCadastrarPet.inputs]}
+                    placeholder="Idade"
+                    value={idade}
+                    onChangeText={(textodigitado) => setIdade(textodigitado)}
+                />
                 <View style={estilos.botaoToggle}>
                     <Text style={[estilos.textoGeral, { color: "#5E5E5E" }]}>Castrado</Text>
                     <View style={{marginRight: 24}}>
                         <Pressable onPress={botaoPressed1}>
                             <Icon
-                                source={togle1}
+                                source={castrado}
                                 color="#E06C2D"
                                 size={40}
                             />
@@ -143,7 +152,7 @@ const CadastrarPet = ({navigation}) => {
                     <View style={{marginRight: 24}}>
                         <Pressable onPress={botaoPressed2}>
                             <Icon
-                                source={togle2}
+                                source={vacinado}
                                 color="#E06C2D"
                                 size={40}
                             />
@@ -155,7 +164,7 @@ const CadastrarPet = ({navigation}) => {
                     <View style={{marginRight: 24}}>
                         <Pressable onPress={botaoPressed3}>
                             <Icon
-                                source={togle3}
+                                source={vermifugado}
                                 color="#E06C2D"
                                 size={40}
                             />
@@ -167,7 +176,7 @@ const CadastrarPet = ({navigation}) => {
                     <View style={{marginRight: 24}}>
                         <Pressable onPress={botaoPressed4}>
                             <Icon
-                                source={togle4}
+                                source={cuidados}
                                 color="#E06C2D"
                                 size={40}
                             />
@@ -178,16 +187,13 @@ const CadastrarPet = ({navigation}) => {
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Porte</Text>
                 </View>
-                <Picker
-                    style={[estilos.select, { width: 382 }]}
-                // placeholder={{label:"Selecione uma opção"}}
-                >
-                    <Picker.Item label="Mini" value="um ano" />
-                    <Picker.Item label="Pequenos" value="dois anos" />
-                    <Picker.Item label="Medio" value="tres anos" />
-                    <Picker.Item label="Grande" value="tres anos" />
-                    <Picker.Item label="Extra Grande" value="tres anos" />
-                </Picker>
+             
+                <TextInput
+                    style={[estilos.input, estiloCadastrarPet.inputs]}
+                    placeholder="Porte"
+                    value={porte}
+                    onChangeText={(textodigitado) => setPorte(textodigitado)}
+                />
                 <View style={estiloCadastrarPet.containerTexto}>
                     <Text style={estilos.titulo}>Descrição</Text>
                 </View>
@@ -196,10 +202,10 @@ const CadastrarPet = ({navigation}) => {
                     placeholder="Conte um pouco mais sobre o pet"
                     multiline={true}
                     numberOfLines={4}
-                    defaultValue={descricao}
+                    value={descricao}
                     onChangeText={(textodigitado) => setDescricao(textodigitado)}
                 />
-                <Pressable style={estilos.botao}>
+                <Pressable style={estilos.botao} onPress={cadastrarPet}>
                     <Text style={estilos.textoBotao}>Cadastrar</Text>
                 </Pressable>
             </View>

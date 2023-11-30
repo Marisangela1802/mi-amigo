@@ -20,14 +20,14 @@ const estilos = StyleSheet.create({
     },
     textoBotao: {
         fontSize: 20,
-        fontFamily: "Arial",
+        fontFamily: "Arial, sans-serif",
         fontWeight: "bold",
         textAlign: "center",
         color: "#fff"
     },
     textoAlternativoBotao: {
         fontSize: 20,
-        fontFamily: "Arial",
+        fontFamily: "Arial, sans-serif",
         fontWeight: "bold",
         textAlign: "center",
         color: "#E06C2D"
@@ -37,7 +37,7 @@ const estilos = StyleSheet.create({
     },
     input: {
         fontSize: 20,
-        fontFamily: "Arial",
+        fontFamily: "Arial, sans-serif",
         fontWeight: "500",
         color: "#9B9B9B",
         width: 300,
@@ -51,7 +51,7 @@ const estilos = StyleSheet.create({
     },
     inputMaior: {
         fontSize: 20,
-        fontFamily: "Arial",
+        fontFamily: "Arial, sans-serif",
         fontWeight: "500",
         color: "#9B9B9B",
         width: 300,
@@ -76,7 +76,7 @@ const estilos = StyleSheet.create({
     },
     textoGeral: {
         fontSize: 20,
-        fontFamily: "Arial"
+        fontFamily: "Arial, sans-serif"
     },
     titulo: {
         fontSize: 20,
@@ -85,7 +85,7 @@ const estilos = StyleSheet.create({
     },
     textoExplicativo: {
         fontSize: 16,
-        fontFamily: "Arial",
+        fontFamily: "Arial, sans-serif",
         color: "#9B9B9B"
     },  
     containerTexto:{

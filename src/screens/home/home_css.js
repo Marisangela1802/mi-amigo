@@ -20,19 +20,19 @@ const estiloHome = StyleSheet.create({
         padding: 10,
     },
     contentCards:{
-        width:"92%",
+        width:"90%",
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     cards:{
-        width: 170,
-        height: 315,
+        width: "100%",
+        height: 335,
         borderRadius: 8,
         backgroundColor: "#E06C2D",
         alignItems: "center",
         paddingTop: 5,
-        marginBottom: 10
+        marginBottom: 10,
     },
     componentImage: {
         width: "90%",
